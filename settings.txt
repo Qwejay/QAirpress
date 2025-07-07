@@ -1,0 +1,12 @@
+FileNamingPattern=原文件名_compressed
+CustomSuffix=_compressed
+OverwriteOriginal=False
+DefaultQuality=75
+AutoOverwrite=True
+KeepExif=False
+SizeLimit=无限制
+ShowProgress=True
+ShowFileSize=True
+ConvertToJpg=False
+OptimizeForWeb=False
+JpegAdvanced=True

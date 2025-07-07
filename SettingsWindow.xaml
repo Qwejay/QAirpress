@@ -1,0 +1,243 @@
+<Window x:Class="QAirpress.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="设置" Height="600" Width="480"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#FFFFFF">
+    
+    <Window.Resources>
+        <Style x:Key="MinimalButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#666666"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F5F5F5"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#007AFF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#0056CC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="MinimalComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="BorderBrush" Value="#E9ECEF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        
+        <Style x:Key="MinimalCheckBox" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+        
+        <Style x:Key="MinimalRadioButton" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,0,16,0"/>
+        </Style>
+        
+        <Style x:Key="MinimalTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="BorderBrush" Value="#E9ECEF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        
+        <Style x:Key="SectionTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+        
+        <Style x:Key="SectionDescription" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#666666"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        
+        <Style x:Key="MinimalExpander" TargetType="Expander">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F5F5F5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题栏 -->
+        <Border Grid.Row="0" Background="#F8F9FA" Padding="24,20">
+            <TextBlock Text="设置" FontSize="18" FontWeight="SemiBold" Foreground="#333333"/>
+        </Border>
+        
+        <!-- 设置内容 -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="24,0">
+            <StackPanel Margin="0,20">
+                
+                <!-- 压缩设置 -->
+                <TextBlock Text="压缩设置" Style="{StaticResource SectionTitle}"/>
+                
+                <!-- 默认质量 -->
+                <TextBlock Text="默认压缩质量" Style="{StaticResource SectionDescription}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24" VerticalAlignment="Center">
+                    <Slider x:Name="QualitySlider" Minimum="60" Maximum="85" Value="75" TickFrequency="1" IsSnapToTickEnabled="True" Width="200" Margin="0,0,12,0"
+                            ValueChanged="QualitySlider_ValueChanged">
+                        <Slider.Resources>
+                            <Style TargetType="Thumb">
+                                <Setter Property="Width" Value="18"/>
+                                <Setter Property="Height" Value="18"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Thumb">
+                                            <Border 
+                                                Background="#007AFF"
+                                                BorderBrush="#E3E3E3"
+                                                BorderThickness="1"
+                                                CornerRadius="9">
+                                                <Border.Effect>
+                                                    <DropShadowEffect Color="#007AFF" BlurRadius="8" ShadowDepth="0" Opacity="0.25"/>
+                                                </Border.Effect>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Slider.Resources>
+                        <Slider.Foreground>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                <GradientStop Color="#60A5FA" Offset="0.0"/>
+                                <GradientStop Color="#007AFF" Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Slider.Foreground>
+                    </Slider>
+                    <TextBlock x:Name="QualityValueText" Text="75%" FontSize="15" FontWeight="Bold" Foreground="#007AFF" VerticalAlignment="Center"/>
+                </StackPanel>
+                
+                <!-- 文件命名 -->
+                <TextBlock Text="文件命名规则" Style="{StaticResource SectionDescription}"/>
+                <ComboBox x:Name="NamingComboBox" Style="{StaticResource MinimalComboBox}" Margin="0,0,0,8" SelectionChanged="NamingComboBox_SelectionChanged">
+                    <ComboBoxItem Content="原文件名_compressed" IsSelected="True"/>
+                    <ComboBoxItem Content="原文件名_压缩"/>
+                    <ComboBoxItem Content="原文件名_mini"/>
+                    <ComboBoxItem Content="原文件名_opt"/>
+                    <ComboBoxItem Content="自定义后缀"/>
+                    <ComboBoxItem Content="直接覆盖原文件"/>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal" x:Name="CustomSuffixPanel" Visibility="Collapsed" Margin="0,0,0,24">
+                    <TextBlock Text="自定义后缀:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="13" Foreground="#666666"/>
+                    <TextBox x:Name="CustomSuffixTextBox" Style="{StaticResource MinimalTextBox}" Width="120" VerticalAlignment="Center" Text="_compressed"/>
+                </StackPanel>
+                
+                <!-- 输出设置 -->
+                <TextBlock Text="输出设置" Style="{StaticResource SectionTitle}"/>
+                
+                <!-- 输出目录 -->
+                <TextBlock Text="输出目录" Style="{StaticResource SectionDescription}"/>
+                <RadioButton x:Name="SameAsSourceRadio" Content="与原文件同目录" IsChecked="True" Style="{StaticResource MinimalRadioButton}"/>
+                
+                <!-- 文件处理 -->
+                <TextBlock Text="文件处理" Style="{StaticResource SectionDescription}"/>
+                <CheckBox x:Name="AutoOverwriteCheckBox" Content="自动覆盖同名文件" Style="{StaticResource MinimalCheckBox}"/>
+                <CheckBox x:Name="KeepExifCheckBox" Content="保留EXIF数据" Style="{StaticResource MinimalCheckBox}"/>
+                
+                <!-- 高级设置 -->
+                <Expander Header="高级设置" IsExpanded="False" Margin="0,16,0,0" Style="{StaticResource MinimalExpander}">
+                    <StackPanel>
+                        <!-- 文件大小限制 -->
+                        <TextBlock Text="文件大小限制" Style="{StaticResource SectionDescription}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <ComboBox x:Name="SizeLimitComboBox" Style="{StaticResource MinimalComboBox}" Width="120" Margin="0,0,8,0">
+                                <ComboBoxItem Content="无限制" IsSelected="True"/>
+                                <ComboBoxItem Content="1MB"/>
+                                <ComboBoxItem Content="2MB"/>
+                                <ComboBoxItem Content="5MB"/>
+                                <ComboBoxItem Content="10MB"/>
+                            </ComboBox>
+                            <TextBlock Text="超过限制时自动降低质量" VerticalAlignment="Center" FontSize="12" Foreground="#666666"/>
+                        </StackPanel>
+                        <!-- 进度显示 -->
+                        <TextBlock Text="进度显示" Style="{StaticResource SectionDescription}"/>
+                        <CheckBox x:Name="ShowProgressCheckBox" Content="显示压缩进度" IsChecked="True" Style="{StaticResource MinimalCheckBox}"/>
+                        <CheckBox x:Name="ShowFileSizeCheckBox" Content="显示文件大小对比" IsChecked="True" Style="{StaticResource MinimalCheckBox}"/>
+                        <!-- 格式转换 -->
+                        <TextBlock Text="格式转换" Style="{StaticResource SectionDescription}"/>
+                        <CheckBox x:Name="ConvertToJpgCheckBox" Content="统一转换为JPG格式" Style="{StaticResource MinimalCheckBox}"/>
+                        <CheckBox x:Name="OptimizeForWebCheckBox" Content="优化为Web格式" Style="{StaticResource MinimalCheckBox}"/>
+                        <!-- 新增：JPEG高级优化 -->
+                        <CheckBox x:Name="JpegAdvancedCheckBox" Content="JPEG高级优化（细节保留/渐进式）" Style="{StaticResource MinimalCheckBox}"/>
+                    </StackPanel>
+                </Expander>
+                
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- 底部按钮 -->
+        <Border Grid.Row="2" Background="#F8F9FA" Padding="24,16">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CancelButton" Content="取消" Style="{StaticResource MinimalButton}" Click="CancelButton_Click" Margin="0,0,12,0" Width="80"/>
+                <Button x:Name="SaveButton" Content="保存" Style="{StaticResource PrimaryButton}" Click="SaveButton_Click" Width="80"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window> 

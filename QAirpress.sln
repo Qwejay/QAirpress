@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirpress", "QAirpress.csproj", "{7E536A74-84CB-424C-B6F0-8173F0D17EDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E536A74-84CB-424C-B6F0-8173F0D17EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E536A74-84CB-424C-B6F0-8173F0D17EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E536A74-84CB-424C-B6F0-8173F0D17EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E536A74-84CB-424C-B6F0-8173F0D17EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD62D0D3-EEF6-43D6-9F26-DB79AE336AE9}
+	EndGlobalSection
+EndGlobal
